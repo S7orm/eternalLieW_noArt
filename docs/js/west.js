@@ -35,7 +35,7 @@ let stats = {
         callString: 'radiance',
         string: 'Radiance',
         description: 'A reward from the Outer Gods, probably',
-        current: 0,
+        current: 0, 
         unlocked: false,
           active: false,
         unlock: ['radiance', 1]
