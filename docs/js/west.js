@@ -597,9 +597,7 @@ function pnak(){//unlocked by crypt
         studyMultiplier();
         madCapIncrease();
         actionUpgrades.study.pnak.purchased = true;
-        document.getElementById('sacrariumTab').style.display='block';
-        domUnlocks.sacrarium = true;
-        comment("+1 Tome in Vault, Sacrarium bookshelf");
+        comment("+1 Tome in Vault");
     }
 }
 
