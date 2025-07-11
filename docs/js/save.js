@@ -66,19 +66,11 @@ function loadpointerdown(){
 function loadFromLocalStorage() {
     //localStorage.clear();
    // window.console.log('load');
-    //dom
+      //dom
 
-    let storedDomUnlocks = localStorage.getItem("savedDomUnlocks"); 
-    if (storedDomUnlocks) {
-        domUnlocks = JSON.parse(storedDomUnlocks); //replace dom
-        domKeys = Object.keys(domUnlocks);
-        for(i=0;i<domKeys.length;i++){
-            if(domUnlocks[domKeys[i]] === true){
-                document.getElementById(domKeys[i] + 'Tab').style.display='block';
-            }
-        }
-    }
-if(domUnlocks.versionNumber == null || domUnlocks.versionNumber < currentVersionNumber){//old versions keep the essential bits
+let storedDomUnlocks = localStorage.getItem("savedDomUnlocks"); 
+storedDomUnlocks = JSON.parse(storedDomUnlocks); 
+if(storedDomUnlocks.versionNumber === null || domUnlocks.versionNumber < currentVersionNumber){//old versions keep the essential bits
         let savedPermanentChanges = localStorage.getItem("savedPermanentChanges");
         permanentChanges = JSON.parse(savedPermanentChanges); 
         if(permanentChanges.immortality === true){ 
@@ -100,9 +92,20 @@ if(domUnlocks.versionNumber == null || domUnlocks.versionNumber < currentVersion
             numberChange("stats", "shards", permanentChanges.totalShards, "blue");
             domUnlocks.divinity = true;
             document.getElementById('divinityTab').style.display='block';
-        }  
-        eventBox( 'Game Updated: v' + domUnlocks.versionNumber, 'Big updates break saves so your game has been reset. Shard purchases are refunded, but all other permanent changes are  preserved. If you would prefer to start fresh, the option in is the settings menu.');
+        }
+        localStorage.clear();
+        saveToLocalStorage();
+        eventBox("images/eventImages/cult.jpg", 'Game Updated: v' + currentVersionNumber, 'Big updates break saves so your game has been reset. Shard purchases are refunded, but all other permanent changes are  preserved. If you would prefer to start fresh, the option in is the settings menu.');
 }else{
+    if (storedDomUnlocks) {
+        domUnlocks = storedDomUnlocks; //replace dom
+        domKeys = Object.keys(domUnlocks);
+        for(i=0;i<domKeys.length;i++){
+            if(domUnlocks[domKeys[i]] === true){
+                document.getElementById(domKeys[i] + 'Tab').style.display='block';
+            }
+        }
+    }
         	//=========================================
 	//  West 
 	//=========================================
