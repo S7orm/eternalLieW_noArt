@@ -214,6 +214,10 @@ if(storedDomUnlocks.versionNumber === null || domUnlocks.versionNumber < current
                 }
             }
         };
+    
+        document.getElementById('faithfulDesc').innerHTML = cult.faithful.description + "Faithful Love and Terror Capacity: " + (cult.faithful.current + cult.hybrids.current) * 16;
+        document.getElementById('chantersDesc').innerHTML = cult.chanters.description + "Chanter Love Capacity: " + (cult.chanters.current * (cult.faithful.current + cult.hybrids.current)) * 16;
+        document.getElementById('sentinelsDesc').innerHTML = cult.sentinels.description + "Sentinels Terror Capacity: " + (cult.sentinels.current * (cult.faithful.current + cult.hybrids.current)) * 16;
     } else {
     console.log("cult missing.");
     }
