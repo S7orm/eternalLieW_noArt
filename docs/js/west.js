@@ -849,12 +849,16 @@ function startMadActLoop(madAction) {
         madActFrequency++; // Increase frequency each loop
     }, 800);
     document.getElementById(madAction + "Wrap").classList.add("madActPulse");
-    document.addEventListener('pointerup', () => stopMadActLoop(madAction, madActIntervalId), { once: true });
+    document.addEventListener('pointerup', () => stopMadActLoop(madAction), { once: true });
+    document.getElementById(madAction + "Wrap").addEventListener('pointerleave', () => stopMadActLoop(madAction), { once: true });
+
     }
 }
 
 function stopMadActLoop(madAction) {
     clearInterval(madActIntervalId); // Stop the interval
+    document.removeEventListener('pointerup');
+    document.getElementById(madAction + "Wrap").removeEventListener('pointerleave');
     document.getElementById(madAction + "Wrap").classList.remove("madActPulse");
 }
 
