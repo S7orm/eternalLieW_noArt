@@ -64,11 +64,21 @@
     min-width: 40dvw;
     width: 40dvw;
     }
+    #vaultTitle{
+    font-size: 6dvh;
+    line-height: 8dvh;
+    height:8dvh;
+    min-width: 40dvw;
+    width: 40dvw;
+    }
     #vault{
         float: left;
         min-width: 40dvw;
+        min-height: 60dvh;
+        height: 60dvh; 
         width: 40dvw;
         display: flex;
+        overflow: hidden;
         flex-wrap: wrap;
     }
         .vaultWraps{
@@ -77,8 +87,8 @@
             min-width: 12dvw;
             height:12dvh;
             text-align: center;
-            font-size: 3dvh;
-            line-height: 3dvh;
+            font-size: 4dvh;
+            line-height: 4dvh;
             position: relative;
             border: 0.1dvw solid white;
             background-color: black;
@@ -94,21 +104,12 @@
             display: block;
             margin: 0 auto;
         }
-        .vaultPng{
-            position: absolute;
-            top: 5dvh;
-            left: 2dvw;
-            width: 8dvw;
-            height: 8dvw;
-            display: block;
-            margin: 0 auto;
-        }
         .vaultNum{
             position: absolute;
             bottom: 0.2dvh;
             left: 1dvw;
             width: 10dvw;
-            height: 3dvh;
+            height: 4dvh;
             display: block;
             margin: 0 auto;
         }
@@ -138,6 +139,7 @@
             font-family: "Papyrus", "Arial", sans-serif;
         }
         .craftWraps{
+            display: none;
             width: 28dvw;
             height: 6dvh;
             margin: 0.5dvw;
@@ -161,7 +163,7 @@
             font-family: "Papyrus", "Arial", sans-serif;
             clear: left;
         }
-        .craftOneOff{
+        .craftOneOffs{
             display: none;
             width: 28dvw;
             height: 6dvh;
@@ -252,6 +254,9 @@
         right: 1dvw; 
         top: 1dvh;
     }
+    #pagesDiv{
+            position: relative;
+    }
     #pagesTitle{
         margin-left: 2dvw;
         margin-right: 1dvw;
@@ -296,6 +301,17 @@
     background-color: red; /* Default color for "off" */
     border-radius: 50%; /* Makes it round */
 }
+
+#resonatorToggle{
+    min-width: 2.5dvh;
+    min-height: 2.5dvh;
+    background-color: red; /* Default color for "off" */
+    border-radius: 50%; /* Makes it round */
+    position: absolute;
+    right: 1dvw; 
+    top: 1dvh;
+}
+
 
 .vaultPulse{
     box-shadow: 0 0 0 0 #3A01DF inset;

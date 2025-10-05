@@ -18,27 +18,28 @@
                                                                                        /*------Stats-----*/
     #statBox{
         float: left;
-        width: 25dvw;
-        height: 20dvh;
+        width: 35dvw;
+        height: 21dvh;
     }
         #name{
-            font-size: 1.5dvw;
+            font-size: 1.6dvw;
             line-height: 2dvh;
             margin: 1dvh;
         }
         .westStatBox{
             display: none;
-            font-size: 1.5dvw;
-            line-height: 3dvh;
-            width: 8dvw;
-            height: 7dvh;
+            font-size: 2dvw;
+            line-height: 4dvh;
+            padding-top: 1dvh;
+            width: 8.8dvw;
+            height: 8.8dvh;
             text-align: center;
             position: relative;
             float:left;
             border: 0.1dvw solid white;
         }
         .westNumbers{
-                min-width: 8dvw;
+                min-width: 8.8dvw;
                 text-align: center;
                 font-weight: bold;
                 position: absolute;
@@ -47,35 +48,29 @@
                 transform: translateX(-50%);
                 }   
         #visionBox{
+            display: block;
             background-color: #00008b;
         }
-        .visionText{
-            font-size: 1.5dvw;
-            line-height: 4dvh;
+        #visionText{
             font-family: "Papyrus", "Arial", sans-serif;
         }
         #charmBox{
             background-color: #6e0a1e;
         }
-        .charmText{
-            font-size: 1.5dvw;
-            line-height: 4dvh;
+        #charmText{
             font-family: "Papyrus", "Arial", sans-serif;
         }
         #healthBox{
+            display: block;
             background-color: #004000;
         }
-        .healthText{
-            font-size: 1.5dvw;
-            line-height: 4dvh;
+        #healthText{
             font-family: "Papyrus", "Arial", sans-serif;
         }
         #radianceBox{
             background-color:#105954;
         }
-        .radianceText{
-            font-size: 1.5dvw;
-            line-height: 4dvh;
+        #radianceText{
             font-family: "Papyrus", "Arial", sans-serif;
         }
         #madnessBox{
@@ -83,10 +78,10 @@
             position: absolute;
             left: 41dvw;
             top: 11dvh;
-            font-size: 1.5dvw;
-            line-height: 3dvh;
-            width: 8dvw;
-            height: 7dvh;
+            font-size: 2dvw;
+            line-height: 4dvh;
+            width: 8.8dvw;
+            height: 8.8dvh;
             background-color: #240048;
             cursor: grab;
             z-index: 10;
@@ -96,29 +91,29 @@
         #madnessBox.dragging {
             cursor: grabbing;
         }
-        .madnessText{
+        #madnessText{
             margin-top: 0.5dvh;
-            font-size: 3dvh;
-            line-height: 3dvh;
+            font-size: 2dvw;
+            line-height: 4dvh;
             font-family: "Papyrus", "Arial", sans-serif;
         }
-
         #gear{
             position: absolute;
             cursor: pointer;
-            left: 50dvw;
+            left: 56dvw;
             top: 4dvh;
-            width: 4.2dvw;
-            height: 2.2dvw;
+            width: 4dvw;
+            height: 4dvh;
+            font-size: 2dvw;
+            line-height: 2dvh;
         }
     #menuBox{
         float: left;
         margin-top: 4dvh;
         width: 12dvw;
         height: 12dvh;
+        flex-wrap: wrap; 
         display: none;
-        gap: 0.5dvw; 
-        flex-wrap: wrap;
     }
  .menuItem{
     clear: both;
@@ -134,14 +129,14 @@
         margin-right: 1dvw;
         margin-top: 1dvh;
         float: right;
-        width: 35dvw;
+        width: 28dvw;
         height: 20dvh;
     }
         #commentaryTitle{
             float: right;
             text-align: right;
             line-height: 4dvh;
-            width: 25dvw;
+            width: 28dvw;
         }
         #commentary{
             cursor: pointer;
@@ -152,7 +147,7 @@
             line-height: 1.5dvw;
             min-height: 16dvh;
             height: 16dvh; 
-            width: 30dvw;
+            width: 28dvw;
             background-color: #121212;
         }
         #topNyar{
@@ -172,11 +167,10 @@
         .tabs{
             display: none;
             padding-top: 0.25dvh;
-            float: left;
             min-width: 15dvw;
             min-height: 4dvh;
             font-size: 1.5dvw;
-            line-height: 1.5dvw;
+            line-height: 4dvh;
             text-align: center;
             border: 0.2dvw solid white;
             border-radius: 5px 0 0 0;
@@ -185,5 +179,6 @@
             z-index: 30;
         }
         #westTab{
+            display: block;
             background-color: black;
         }

@@ -5,13 +5,13 @@
 }
 body, h1, h2, h3, h4, h5, h6, p, ul, li, fieldset, form, label, legend, table, caption, tr, th, td { vertical-align:top; margin: 0; padding: 0; border: 0; outline: 0; }
 body {
-    font-size: 1.5dvh;
-    line-height: 2dvh;
+    font-size: 2dvw;
+    line-height: 4dvh;
     max-width: 100dvw;
     max-height: 100dvh;
-    position: fixed;
+    position: fixed; 
     box-sizing: border-box;
-    font-family: "Bookman Old Style", sans-serif; ;
+    font-family: "Bookman Old Style", sans-serif;
     background-color: black;
     color: #ebebeb;
     overflow: hidden;
@@ -19,6 +19,9 @@ body {
 .rotate-message{
     width: 50dvw;  /* Half the width of the viewport */
     height: 50dvw; /* Half the height of the viewport */
+    position: absolute; 
+    top: 50%; 
+    left: 50%;
     transform: translate(50%, 50%); /* Center it using offset */
     padding: 4dvw;
     border: 0.4dvw groove white;
@@ -60,15 +63,15 @@ span{
 }
 ul{
     list-style: none;
-  padding: 0;
+    padding: 0;
 }
 button {
   display: inline-block;
   padding: 0;
   margin: 0;
   font-family: system-ui, sans-serif;
-  font-size: 1.25dvw;
-  line-height: 1.5dvw;
+  font-size: 2dvw;
+  line-height: 4dvh;
   text-align: center;
   text-decoration: none;
   vertical-align: middle;
@@ -77,7 +80,6 @@ button {
   border-radius: 0.5dvw;
   background-color: black;
   color: white;
-  user-select: none;
   white-space: nowrap;
   transition: transform 0.2s;
 }                                           
@@ -91,7 +93,8 @@ button:not(:active){
                                                                                        /*------BigBox-----*/
 
 #mainWrapper{
-    border: 0.4dvw solid white;
+    border: 0.1dvw solid transparent;
+    border-image:  url(../images/border6.png) 30% round;
     border-image-width: 30% 8%;
     padding-top: 2.9dvh;
     padding-left: 1dvw;
@@ -104,46 +107,97 @@ button:not(:active){
     height: 69dvh;
 }
 
-
 .descriptionBox {
     display: none;  
-    pointer-events: none;
     position: absolute;
     top: 100%;
     left: 10%;
-    background-color: #FAF9F6;
-    color: black;
+    background-color: #F0EFEC;
     padding: 0.1dvw;
-    width: 15dvw;
-    font-size: 1.25dvw;
-    line-height: 3dvh;
+    width: 16dvw;
+    font-size: 4dvh;
+    line-height: 4.4dvh;
     text-align: center;
     z-index: 50;
     white-space: normal;
+    border: 0.1dvh groove black;
+    border-radius: 8px;
+}
+
+.statDescriptions{
+    top: 48%;
+    left: 80%;
+    width: 16dvw;
+}
+.actionDescriptions{
+    left: 0;
+}
+.cultDescription{
+    left: 1dvw;
 }
 .craftDescription{
     top: 100%;
     left: 0%;
     width: 28dvw;
 }
-    .madDescription {
-        width: 10dvw;
-        left: 0;
-    }
+.worldDescription{
+    top: 100%;
+    left: 10%;
+}
+.relicsDescription{
+    left: -10%;
+}
+.madDescription {
+    left: -1dvw;
+}
 .lockDesc{
-    width: 10dvw;
+    color: black;
+    font-family: "Bookman Old Style", sans-serif;
+    font-style: normal;
+    font-weight: normal;
 }
     .descriptionBox.show {
         display: block;
     }
     .desc{
+        color: black;
+        font-family: "Bookman Old Style", sans-serif;
+        font-style: normal;
+        font-weight: normal;
         min-width: 10dvw;
         clear: left;
     }
     .costs{
+        color: black;
+        font-family: "Bookman Old Style", sans-serif;
+        font-style: normal;
+        font-weight: normal;
         min-width: 3dvw;
     }
-    
+    .godsDescription{
+    }
+@keyframes pulse {
+    0% {
+            box-shadow: 0 0 0 0 #8258FA inset;
+    }
+    70% {
+            box-shadow: 0 0 0 28px #210B61 inset;
+    }
+    100% {
+            box-shadow: 0 0 0 0 #210B61 inset;
+    }
+}
+@keyframes buttonPress {
+    0% {
+            box-shadow: 0 0 0 0 #8258FA inset;
+    }
+    70% {
+            box-shadow: 0 0 0 12px #210B61 inset;
+    }
+    100% {
+            box-shadow: 0 0 0 0 #210B61 inset;
+    }
+}
     @keyframes flash {
     0% { background-color: black; }
     50% { background-color: white; }
@@ -157,38 +211,30 @@ button:not(:active){
 
     #eventBox{
         position: absolute;
-        left: 33dvw;
-        top: 27dvh;
+        left: 20dvw;
+        top: 20dvh;
         z-index: 50;
-        width: 33dvw;
-        height: 69dvh;
+        width: 60dvw;
+        height: 60dvh;
         background-color: black;
         border: 0.3dvw solid white;
         border-radius: 15%;
         color: #ebebeb;
         display: block; 
     }
-    #eventImage{
-        display: block;
-        border: 0.2dvw solid black;
-        width: auto;
-        height: 25dvh;
-        margin: auto;
-        margin-top: 2dvh;
-    }
     #eventTitle{
-        font-size: 4dvh;
-        line-height: 5dvh;
+        font-size: 8dvh;
+        line-height: 12dvh;
         text-align: center;
         min-width: 33dvw;
         clear: left;
+        text-decoration: underline;
     }
     #eventBoxText{
         text-indent: 20px;
         margin: 2dvw;
-        font-size: 1.25dvw;
-        line-height: 1.5dvw;
-        width: 28dvw;
+        font-size: 4dvh;
+        line-height: 6dvh;
         clear: left;
         color: #ebebeb;
     }
@@ -199,8 +245,8 @@ button:not(:active){
           background-color: transparent;
           border: none;
           color: red;
-          font-size: 3dvw;
-          line-height: 2.5dvw;
+          font-size: 6dvw;
+          line-height: 6dvw;
           padding: 1dvw;
           font-weight: bold;
           cursor: pointer;
@@ -238,13 +284,11 @@ button:not(:active){
   }
 }
 
-.groovy-border {
-}
     .eventButtonsLeft{
         position: absolute;
         bottom: 4%;
         left: 12%;
-        font-size: 2dvh;
+        font-size: 4dvh;
         min-width: 10dvw;
         min-height: 5dvh;
         border: 0.1dvw groove white;
@@ -254,7 +298,7 @@ button:not(:active){
         position: absolute;
         bottom: 4%;
         right: 12%;
-        font-size: 2dvh;
+        font-size: 4dvh;
         min-width: 10dvw;
         min-height: 5dvh;
         border: 0.1dvw groove white;
@@ -264,9 +308,9 @@ button:not(:active){
         margin-left: 3dvw;
         float: left;
         clear: left;
-        font-size: 8dvh;
-        min-width: 15dvw;
-        min-height: 10dvh;
+        font-size: 12dvh;
+        min-width: 20dvw;
+        min-height: 16dvh;
         border: 0.5dvw groove white;
         font-weight: bold;
         animation: yess 2s infinite; /* Adjust animation duration as needed */
@@ -276,16 +320,15 @@ button:not(:active){
         float: right;
         margin-top: 5dvh;
         margin-right: 3dvw;
-        font-size: 2dvh;
-        min-width: 5dvw;
-        min-height: 3dvh;
+        font-size: 4dvh;
+        min-width: 6dvw;
+        min-height: 4dvh;
         border: 0.1dvw solid darkslategrey;
         
     }
    
 #footer{
     position: fixed;
-    float: right;
     bottom: 5dvh;
     right: 5dvw;
     width: 10dvw;
