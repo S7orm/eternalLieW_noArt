@@ -107,58 +107,43 @@ button:not(:active){
     height: 69dvh;
 }
 
+.temp-layout-fix * {
+    /* Override display: none on ALL descendants */
+    display: block !important; 
+    /* Keep them visually hidden but with calculated size and position */
+    visibility: hidden !important;
+    /* Optional: Ensure they don't consume mouse events */
+    pointer-events: none !important; 
+}
+#descriptionContainer{
+    width: 96dvw;
+    height: 48dvh;
+    margin:2dvw;
+    margin-top: 48dvh;
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+}
 .descriptionBox {
-    display: none;  
     position: absolute;
-    top: 100%;
-    left: 10%;
+    display: none;  
     background-color: #F0EFEC;
-    padding: 0.1dvw;
-    width: 16dvw;
-    font-size: 4dvh;
-    line-height: 4.4dvh;
+    padding: 0.4dvw;
+    width: 48dvw;
+    min-height: 22dvh;
+    font-size: 4.8dvh;
+    line-height: 4.8dvh;
     text-align: center;
-    z-index: 50;
     white-space: normal;
     border: 0.1dvh groove black;
     border-radius: 8px;
 }
-
-.statDescriptions{
-    top: 48%;
-    left: 80%;
-    width: 16dvw;
+.descriptionBox.show{
+    display: block;
 }
-.actionDescriptions{
-    left: 0;
+.descriptionBox.hide{
+    display: none;
 }
-.cultDescription{
-    left: 1dvw;
-}
-.craftDescription{
-    top: 100%;
-    left: 0%;
-    width: 28dvw;
-}
-.worldDescription{
-    top: 100%;
-    left: 10%;
-}
-.relicsDescription{
-    left: -10%;
-}
-.madDescription {
-    left: -1dvw;
-}
-.lockDesc{
-    color: black;
-    font-family: "Bookman Old Style", sans-serif;
-    font-style: normal;
-    font-weight: normal;
-}
-    .descriptionBox.show {
-        display: block;
-    }
     .desc{
         color: black;
         font-family: "Bookman Old Style", sans-serif;
@@ -174,8 +159,7 @@ button:not(:active){
         font-weight: normal;
         min-width: 3dvw;
     }
-    .godsDescription{
-    }
+
 @keyframes pulse {
     0% {
             box-shadow: 0 0 0 0 #8258FA inset;

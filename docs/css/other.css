@@ -35,7 +35,7 @@
         .worldWraps{
             display: none;
             margin-top: 1dvw;
-            width: 14dvw;
+            width: 22dvw;
             height:8dvh;
             text-align: center;
             font-size: 4dvh;
@@ -77,7 +77,7 @@
             .dreamExWraps{
                 display: none;
                 margin-top: 1dvw;
-                width: 14dvw;
+                width: 22dvw;
                 height:8dvh;
                 text-align: center;
                 font-size: 4dvh;
@@ -131,7 +131,7 @@
             border: 0.1dvw solid white;
             display: none;
             box-sizing: border-box;
-            min-width: 12dvw;
+            min-width: 22dvw;
             height: 4dvh;
             margin-bottom: 1dvw;
             margin-left: 2dvw;
@@ -157,7 +157,7 @@
             font-family: "Papyrus", "Arial", sans-serif;
             font-weight: bold;
             text-align: center;
-            width: 12dvw;
+            width: 22dvw;
             height: 8dvw;
             margin: 1dvw;
             position: relative;
@@ -203,7 +203,7 @@
             font-family: "Papyrus", "Arial", sans-serif;
             font-weight: bold;
             text-align: center;
-            width: 10dvw;
+            width: 14dvw;
             height: 6dvw;
             margin: 0.8dvw;
             position: relative;

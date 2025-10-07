@@ -263,53 +263,40 @@ function eventListeners2(){
 
     //code for description hovers
 function addCommentsToButtons(setArray) {
+    // 1. Start Override: Add the temporary class to the body
+    document.body.classList.add('temp-layout-fix');
+    const descContainer = document.getElementById('descriptionContainer');
     setArray.forEach(singleSet => {
         const setKeys = Object.keys(singleSet);  
         setKeys.forEach(function (setKey) {
-            const box = document.getElementById(setKey +'Box'); // Find button by ID using the key
-            const wraps = document.getElementById(setKey +'Wrap'); // Find button by ID using the key
+            const box = document.getElementById(setKey +'Box');
+            const wraps = document.getElementById(setKey +'Wrap');
             const OneOff = document.getElementById(setKey +'OneOff');
             const locks = document.getElementById(setKey +'Lock');
             const choices = document.getElementById(setKey + 'Choice');
             const shardBuyP = document.getElementById(setKey + 'ShardBuyWrap');
             const shardBuyT = document.getElementById(setKey + 'ShardBuyOneOff');
             const container = shardBuyP || shardBuyT || box || wraps || OneOff || choices;
+            
             if (container) {
-                const descriptionBox = document.createElement('div'); //main description
+                const descriptionBox = document.createElement('div');
                 descriptionBox.classList.add('descriptionBox');
-                if(singleSet === stats){
-                    descriptionBox.classList.add('statDescriptions');
-                };
-                const targetSets = [actions, actionUpgrades.study, actionUpgrades.chant, actionUpgrades.dream, actionUpgrades.preach, dreamChoices];
-                if (targetSets.includes(singleSet)) {
-                    descriptionBox.classList.add('actionDescriptions');
+                descriptionBox.dataset.parentId = container.id; // Link back to parent button
+                descContainer.appendChild(descriptionBox); 
+                const rect = container.getBoundingClientRect();
+                if (rect.left < window.innerWidth / 2) {
+                    descriptionBox.style.right = '2vw';
+                } else {
+                    descriptionBox.style.left = '2vw';
                 }
-                if(singleSet === cult){
-                    descriptionBox.classList.add('cultDescription');
-                };
-                if ([loveCrafts, terrorCrafts, goldCrafts, fleshCrafts, tomeCrafts, ichorCrafts, tyogCrafts].includes(singleSet)) {
-                    descriptionBox.classList.add('craftDescription');
-                };
-                if(singleSet === madActions){
-                    descriptionBox.classList.add('madDescription');
-                };
-                if(singleSet === world){
-                    descriptionBox.classList.add('worldDescription');
-                };
-                if(singleSet === gods){
-                    descriptionBox.classList.add('godsDescription');
-                };
-                if(singleSet === relics){
-                    descriptionBox.classList.add('relicsDescription');
-                };
-                container.appendChild(descriptionBox);
                 const description = document.createElement('p');
                 description.textContent = singleSet[setKey].description[0];
                 description.classList.add('desc'); 
                 const Id = setKey + 'Desc'; 
                 description.id = Id; 
                 descriptionBox.appendChild(description);
-                if(singleSet[setKey].description[3]){ //adding terror mins
+                
+                if(singleSet[setKey].description[3]){
                     const terror = document.createElement('span');
                     terror.textContent = singleSet[setKey].description[3];
                     terror.classList.add('desc'); 
@@ -317,7 +304,7 @@ function addCommentsToButtons(setArray) {
                     terror.id = Id; 
                     descriptionBox.appendChild(terror);
                 }
-                if(singleSet[setKey].madMin){ //adding mad mins
+                if(singleSet[setKey].madMin){
                     const madMinDesc = document.createElement('span');
                     madMinDesc.textContent = singleSet[setKey].madMin;
                     madMinDesc.classList.add('desc'); 
@@ -351,10 +338,12 @@ function addCommentsToButtons(setArray) {
                 }
             }
             if (locks) {
-                const descriptionBox = document.createElement('div'); //main description
+                const descriptionBox = document.createElement('div');
                 descriptionBox.classList.add('descriptionBox');
                 descriptionBox.classList.add('lockDesc');
-                locks.appendChild(descriptionBox);
+                descriptionBox.dataset.parentId = locks.id;
+                descContainer.appendChild(descriptionBox); // Build inside mobile container
+                
                 const description = document.createElement('p');
                 description.textContent = singleSet[setKey].lockCost;
                 description.classList.add('desc'); 
@@ -364,55 +353,55 @@ function addCommentsToButtons(setArray) {
             }
         });
     });
+    // 2. End Override: Remove the temporary class
+    document.body.classList.remove('temp-layout-fix');
 }
 
+// Modified to show/hide descriptions in mobile container
 function commentListeners() {
     const descParents = document.querySelectorAll(".westStatBox, .actionWraps, .dreamChoice, .actionUpgradeWraps, .madActionWraps, .madUps, .cultWraps, .craftWraps, .craftLocks, .craftOneOffs, .worldWraps, .dreamExWraps, .godsWraps, .godsAppeasedWraps, .relicWraps, .altarOptionWraps, .shardBuyWraps, .shardBuyOneOffs, .achievementsWraps");
+    const descriptionContainer = document.getElementById('descriptionContainer');
     descParents.forEach(function (parent) {
-        const descriptionBox = parent.querySelector(".descriptionBox");
+        // Find the descriptionBox in mobile container that belongs to this parent
+        const descriptionBox = descriptionContainer.querySelector(`[data-parent-id="${parent.id}"]`);
         let showTimeout, hideTimeout;
         let isHovering = false;
         parent.addEventListener("pointerenter", function () {
             isHovering = true;
-            clearTimeout(hideTimeout); // Prevent hiding if it was scheduled
+            clearTimeout(hideTimeout);
             showTimeout = setTimeout(function () {
                 descriptionBox.classList.add("show");
             }, 400);
         });
+        
         parent.addEventListener("pointerleave", function () {
             isHovering = false;
-            clearTimeout(showTimeout); // Prevent showing if not already shown
+            clearTimeout(showTimeout);
             hideTimeout = setTimeout(function () {
                 if (!isHovering) {
                     descriptionBox.classList.remove("show");
                 }
             }, 800);
         });
-       //console.log(parent);
-        descriptionBox.addEventListener("pointerenter", function () {
-            isHovering = true; // Prevent hiding when re-entering the descriptionBox
-            clearTimeout(hideTimeout);
-        });
-         descriptionBox.addEventListener("pointerleave", function (e) {
-            // same parent dont hide
-            if (e.relatedTarget && parent.contains(e.relatedTarget)) {
-                isHovering = true;
-                return;
-            }
-            isHovering = false;
-            hideTimeout = setTimeout(function () {
-                if (!isHovering) descriptionBox.classList.remove("show");
-            }, 800);
-        });
     });
 }
 
-//single use description adds
+// Modified to build description inside mobile container
 function addDesc(targetDiv, descriptionText) {
+    // 1. Start Override: Add the temporary class to the body
+    document.body.classList.add('temp-layout-fix');
     targetDiv = document.getElementById(targetDiv);
+    const descContainer = document.getElementById('descriptionContainer');
     const descriptionBox = document.createElement('div');
     descriptionBox.classList.add('descriptionBox');
-    targetDiv.appendChild(descriptionBox);
+    descriptionBox.dataset.parentId = targetDiv.id;
+    descContainer.appendChild(descriptionBox); // Build inside mobile container
+    const rect = targetDiv.getBoundingClientRect();
+    if (rect.left < window.innerWidth / 2) {
+        descriptionBox.style.right = '2vw';
+    } else {
+        descriptionBox.style.left = '2vw';
+    }
     const description = document.createElement('p');
     description.textContent = descriptionText;
     description.classList.add('desc');
@@ -426,6 +415,7 @@ function addDesc(targetDiv, descriptionText) {
             descriptionBox.classList.add("show");
         }, 500);
     });
+    
     targetDiv.addEventListener("pointerleave", function () {
         isHovering = false;
         clearTimeout(showTimeout);
@@ -435,59 +425,51 @@ function addDesc(targetDiv, descriptionText) {
             }
         }, 500);
     });
-    descriptionBox.addEventListener("pointerenter", function () {
-        isHovering = true;
-        clearTimeout(hideTimeout);
-    });
-    descriptionBox.addEventListener("pointerleave", function () {
-        isHovering = false;
-        hideTimeout = setTimeout(function () {
-            if (!isHovering) {
-                descriptionBox.classList.remove("show");
-            }
-        }, 500);
-    });
+    // 2. End Override: Remove the temporary class
+    document.body.classList.remove('temp-layout-fix');
 }
 
 document.addEventListener("DOMContentLoaded", function () {  //start of page after init and before load
+    requestAnimationFrame(() => {//buffer for rect
     //localStorage.clear();
-    totalTime.timeInit = Date.now();
-    shadows();
-    addCommentsToButtons([stats, actions, actionUpgrades.study, actionUpgrades.chant, actionUpgrades.dream, actionUpgrades.preach, dreamChoices, madActions, madUps, cult, vault, dreamEx, world, gods, godsAppeased, relics, loveCrafts, terrorCrafts, goldCrafts, fleshCrafts, tomeCrafts, ichorCrafts, tyogCrafts, altars, shardBuys.stats, shardBuys.actions, shardBuys.madActions, shardBuys.madReducers, shardBuys.cultists, shardBuys.altarRoom, achievements.west, achievements.cult, achievements.vault, achievements.relics, achievements.gods]);
-    if(localStorage.getItem("savedPermanentChanges")){
-        let savedPermanentChanges = localStorage.getItem("savedPermanentChanges");
-        permanentChanges = JSON.parse(savedPermanentChanges); 
-    }
-    commentListeners();
-    addDesc("pagesDiv", 'Pages can be found during several expeditions, which can be repeated at ever increasing costs.');
-    eventListeners1();
-    eventListeners2();
-    window.console.log("loading...");
-    let storedDomUnlocks = localStorage.getItem("savedDomUnlocks"); 
-    if (storedDomUnlocks) {
-        domUnlocks = JSON.parse(storedDomUnlocks); //replace dom
-    }
-    if(!domUnlocks.versionNumber || domUnlocks.versionNumber < currentVersionNumber){//old versions keep the essential bits
-        loadFromLocalStorage();
-        window.console.log('version updated');
-    }else if(permanentChanges.resetting===false){
-        loadFromLocalStorage();
-        window.console.log('loaded');
-        offlineProgress();
-        totalTime.timeSession=0; //reset session time after offline
-    }else if (permanentChanges.lastReset === "restart") {
-        window.console.log('restartRun');
-        basePostReset();
-        closeEventBox();
-    }else if (permanentChanges.lastReset==="nyar"){
-        window.console.log('nyarload');
-        nyarPostReset();
-    }else if(permanentChanges.lastReset==="mist"){
-        mistPostReset();
-    }else if(permanentChanges.lastReset==="devourer"){
-        console.log("devoured?");
-        darkDevourerPostReset();
-    }
-    permanentChanges.resetting=false;
-    window.addEventListener("beforeunload", saveToLocalStorage);  
+        totalTime.timeInit = Date.now();
+        shadows();
+        if(localStorage.getItem("savedPermanentChanges")){
+            let savedPermanentChanges = localStorage.getItem("savedPermanentChanges");
+            permanentChanges = JSON.parse(savedPermanentChanges); 
+        }
+        addCommentsToButtons([stats, actions, actionUpgrades.study, actionUpgrades.chant, actionUpgrades.dream, actionUpgrades.preach, dreamChoices, madActions, madUps, cult, vault, dreamEx, world, gods, godsAppeased, relics, loveCrafts, terrorCrafts, goldCrafts, fleshCrafts, tomeCrafts, ichorCrafts, tyogCrafts, altars, shardBuys.stats, shardBuys.actions, shardBuys.madActions, shardBuys.madReducers, shardBuys.cultists, shardBuys.altarRoom, achievements.west, achievements.cult, achievements.vault, achievements.relics, achievements.gods]);
+        commentListeners();
+        addDesc("pagesDiv", 'Pages can be found during several expeditions, which can be repeated at ever increasing costs.');
+        eventListeners1();
+        eventListeners2();
+        window.console.log("loading...");
+        let storedDomUnlocks = localStorage.getItem("savedDomUnlocks"); 
+        if (storedDomUnlocks) {
+            domUnlocks = JSON.parse(storedDomUnlocks); //replace dom
+        }
+        if(!domUnlocks.versionNumber || domUnlocks.versionNumber < currentVersionNumber){//old versions keep the essential bits
+            loadFromLocalStorage();
+            window.console.log('version updated');
+        }else if(permanentChanges.resetting===false){
+            loadFromLocalStorage();
+            window.console.log('loaded');
+            offlineProgress();
+            totalTime.timeSession=0; //reset session time after offline
+        }else if (permanentChanges.lastReset === "restart") {
+            window.console.log('restartRun');
+            basePostReset();
+            closeEventBox();
+        }else if (permanentChanges.lastReset==="nyar"){
+            window.console.log('nyarload');
+            nyarPostReset();
+        }else if(permanentChanges.lastReset==="mist"){
+            mistPostReset();
+        }else if(permanentChanges.lastReset==="devourer"){
+            console.log("devoured?");
+            darkDevourerPostReset();
+        }
+        permanentChanges.resetting=false;
+        window.addEventListener("beforeunload", saveToLocalStorage);  
+    });
 });

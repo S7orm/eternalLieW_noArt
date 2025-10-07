@@ -127,14 +127,14 @@
     background-color: lightblue;
     border: 0.1dvw groove white;
     margin-right: 0.4dvw;
-    font-size: 1.2dvw;
+    font-size: 1.4dvw;
     line-height: 2.4dvh;
     width: 3.6dvw;
     height: 2.8dvh;
     min-width: 16%;
     min-height: 16%;
     color: black;
-    border-radius: 5px;
+    border-radius: 2px;
     float: right;
 }
 .bonusLines{
@@ -157,46 +157,48 @@
 .pegPoolPeg {
   background-color: black;
   display: none;
-  height: 4.4dvw;    
-  width: 4.4dvw;
+  height: 2.8dvw;    
+  width: 12.4dvw;
   border: 0.1dvh solid #ccc; 
-  border-radius: 5px;  
+  border-radius: 4px;  
   text-align: center;
 }
 #altarPeg{
-    display: block;
+  display: flex;
 }
 #faithfulPeg{
-    display: block;
+  display: flex;
 }
 #westPeg{
-    display: block;
+  display: flex;
 }
 
 .pegLetter{
-    margin: 0.4dvw;
+    float: left;
+    margin-left: 0.2dvw;
     height: 2dvw;    
     width: 2dvw;
     font-size: 2dvw;
     line-height: 2dvw;
-    border: 0.1dvh solid #ccc; 
-    border-radius: 5px;  
+    border: 0.08dvh solid #ccc; 
+    border-radius: 4px;  
     text-align: center;
 }
 /* Style for the peg label */
 .peg-label {
-  width: 70%;
-  float: left;
-  clear: left;
-  margin-left: 0.1dvw;
+    float: left;
+    width: 6dvw;
+    font-size: 1.4dvw;
+    line-height: 2dvw;
 }
-
 /* Style for the peg count */
 .peg-count {
     float: right;
-    width: 19%;
-    margin-right: 0.1dvw;
+    font-size: 1.4dvw;
+    line-height: 2dvw;
 }
+
+
 #gridFlex{
     display: flex;
     justify-content: left; 
