@@ -912,9 +912,9 @@ altarInfo();
 initializeRoom();
 
 let pegDescriptions = {
-    default: "Drag and drop to fill the room. Doubleclick/doubletap to remove. Hover on sidebar elements for details.",
+    default: "Drag and drop to fill the room. Doubletap to remove. Hover on sidebar elements for details.",
     altarPeg: "Each altar provides different benefits. See description in dropdown menu to the left.",
-    westPeg: "West produces differing effects for each adjacent. West converts Madness into Terror for adjacent Faithful, Love into Charm for Chanters, Terror into Gold for Sentinels, and 88 Vision per page from Priests (if possible).",
+    westPeg: "West alters the output of others. Madness into Terror Faithful, Love into Charm for Chanters, Terror into Gold for Sentinels, and 88 Vision into a page from Priests (if possible).",
     faithfulPeg: "The fodder.",
     chantersPeg: "Produces 1 Love for each adjacent Faithful.",
     sentinelsPeg: "Produces 1 Terror for each adjacent Faithful.",

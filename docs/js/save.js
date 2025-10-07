@@ -263,7 +263,7 @@ if(!domUnlocks.versionNumber || domUnlocks.versionNumber < currentVersionNumber)
                     document.getElementById(cultKeys[i]).innerHTML = cult[cultKeys[i]].current;
                 if (pegTypes.includes(cultKeys[i])) {
                         // Show the Peg element
-                        document.getElementById(cultKeys[i] + "Peg").style.display = 'block';
+                        document.getElementById(cultKeys[i] + "Peg").style.display = 'flex';
                         document.getElementById(cultKeys[i] + "Unplaced").innerText = cult[cultKeys[i]].unplaced;
                     }
                 }

@@ -195,10 +195,10 @@ button:not(:active){
 
     #eventBox{
         position: absolute;
-        left: 20dvw;
-        top: 20dvh;
+        left: 18dvw;
+        top: 28dvh;
         z-index: 50;
-        width: 60dvw;
+        width: 64dvw;
         height: 60dvh;
         background-color: black;
         border: 0.3dvw solid white;
